@@ -4,7 +4,7 @@
 import {
   render,
   renderFromString,
-} from "https://deno.land/x/anders/flowchart/mod.ts";
+} from "https://deno.land/x/serea/flowchart/mod.ts";
 ```
 
 Both examples below return the same SVG, see the [example](./example.svg)

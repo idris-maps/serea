@@ -4,7 +4,7 @@
 import {
   render,
   renderFromString,
-} from "https://deno.land/x/anders/sequence-diagram/mod.ts";
+} from "https://deno.land/x/serea/sequence-diagram/mod.ts";
 ```
 
 Both examples below return the same SVG, see the [example](./example.svg)
