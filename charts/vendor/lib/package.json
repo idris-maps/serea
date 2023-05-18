@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "esbuild index.js --bundle --minify --format=esm --outfile=vegalite.js"
+  },
+  "dependencies": {
+    "esbuild": "^0.14.38",
+    "vega": "^5.22.1",
+    "vega-lite": "^5.2.0"
+  }
+}

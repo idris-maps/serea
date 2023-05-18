@@ -1,0 +1,94 @@
+import type { Element, HTMLDocument, Page, Site } from "./deps.ts";
+
+import * as areaChart from "../charts/area-chart.ts";
+import * as barChart from "../charts/bar-chart.ts";
+import * as flowChart from "../flowchart/mod.ts";
+import * as lineChart from "../charts/line-chart.ts";
+import * as multiLineChart from "../charts/multi-line-chart.ts";
+import * as pieChart from "../charts/pie-chart.ts";
+import * as sequenceDiagram from "../sequence-diagram/mod.ts";
+import * as sheetMusic from "../sheet-music/mod.ts";
+import * as stackedBarChart from "../charts/stacked-bar-chart.ts";
+
+const getLanguage = (codeElement: Element) => {
+  const classes = Array.from(codeElement.classList.values());
+  const langClass = classes.find((d) => d.startsWith("language-"));
+  if (!langClass) return undefined;
+  const [_, language] = langClass.split("language-");
+  return language && language.trim() !== "" ? language.trim() : undefined;
+};
+
+const getHTML = (lang: string, content: string) => {
+  switch (lang) {
+    case "area-chart":
+      return areaChart.renderString(content);
+    case "bar-chart":
+      return barChart.renderString(content);
+    case "flow-chart":
+      return flowChart.renderFromString(content);
+    case "line-chart":
+      return lineChart.renderString(content);
+    case "pie-chart":
+      return pieChart.renderString(content);
+    case "sequence-diagram":
+      return sequenceDiagram.renderFromString(content);
+    case "sheet-music":
+      return sheetMusic.renderFromString(content);
+    case "multi-line-chart":
+      return multiLineChart.renderString(content);
+    case "stacked-bar-chart":
+      return stackedBarChart.renderString(content);
+  }
+};
+
+const handleCodeBlock = async (
+  document: HTMLDocument,
+  codeElement: Element,
+) => {
+  const language = getLanguage(codeElement);
+  console.log({ language });
+  if (!language) return;
+
+  const pre = codeElement.parentNode;
+  if (pre?.nodeName !== "PRE") return;
+
+  const parent = pre.parentNode;
+  if (!parent) return;
+
+  const container = document.createElement("div");
+  container.classList.add("serea");
+  container.classList.add(language);
+
+  try {
+    const innerHTML = await getHTML(language, codeElement.innerHTML);
+
+    if (!innerHTML) return;
+    container.innerHTML = innerHTML;
+
+    Array.from(container.querySelectorAll("svg")).map((d) => {
+      (d as Element).removeAttribute("width");
+      (d as Element).removeAttribute("height");
+    });
+
+    parent.replaceChild(container, pre);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const sereaPlugin = () => {
+  return (site: Site) => {
+    site.process([".md"], async (page: Page) => {
+      const { document } = page;
+      if (!document) {
+        return;
+      }
+      const codeblocks = Array.from(
+        document.querySelectorAll("code"),
+      ) as Element[];
+      await Promise.all(
+        codeblocks.map((code) => handleCodeBlock(document, code)),
+      );
+    });
+  };
+};
