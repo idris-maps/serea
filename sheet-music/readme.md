@@ -1,9 +1,7 @@
 # sheet music
 
 ```ts
-import {
-  renderFromString,
-} from "https://deno.land/x/serea/sheet-music/mod.ts";
+import { renderFromString } from "https://deno.land/x/serea/sheet-music/mod.ts";
 ```
 
 ## renderFromString
