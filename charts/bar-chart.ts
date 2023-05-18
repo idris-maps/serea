@@ -9,7 +9,7 @@ export const render = async (data: Data2d, config: Config2d) => {
   return config.background ? svg : setBorderStyle(crypto.randomUUID(), svg);
 };
 
-export const renderString = (d: string) => {
+export const renderFromString = (d: string) => {
   const { data, config } = parse2d(d);
   return render(data, config);
 };

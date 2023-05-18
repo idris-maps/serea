@@ -11,7 +11,7 @@ export const render = async (data: Data3d, config: ConfigStackedBar) => {
   return config.colors ? _svg : getFillDefsSvg(id) + _svg;
 };
 
-export const renderString = (d: string) => {
+export const renderFromString = (d: string) => {
   const { data, config } = parse3d(d);
   return render(data, config);
 };

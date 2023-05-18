@@ -10,7 +10,7 @@ export const render = async (data: Data3d, config: ConfigMultiLine) => {
   return config.background ? svg : setBorderStyle(id, svg);
 };
 
-export const renderString = (d: string) => {
+export const renderFromString = (d: string) => {
   const { data, config } = parse3d(d);
   return render(data, config);
 };

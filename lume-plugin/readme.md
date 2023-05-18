@@ -17,12 +17,12 @@ export default site;
 
 available "languages":
 
-* `area-chart`
-* `bar-chart`
-* `flow-chart`
-* `line-chart`
-* `pie-chart`
-* `sequence-diagram`
-* `sheet-music`
-* `multi-line-chart`
-* `stacked-bar-chart`
+- `area-chart`
+- `bar-chart`
+- `flow-chart`
+- `line-chart`
+- `pie-chart`
+- `sequence-diagram`
+- `sheet-music`
+- `multi-line-chart`
+- `stacked-bar-chart`

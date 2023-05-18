@@ -10,7 +10,7 @@ export const render = async (data: DataPie, config: ConfigPie) => {
   return config.colors ? svg : getFillDefsSvg(id) + svg;
 };
 
-export const renderString = (d: string) => {
+export const renderFromString = (d: string) => {
   const { data, config } = parsePie(d);
   return render(data, config);
 };

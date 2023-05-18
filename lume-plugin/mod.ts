@@ -21,23 +21,23 @@ const getLanguage = (codeElement: Element) => {
 const getHTML = (lang: string, content: string) => {
   switch (lang) {
     case "area-chart":
-      return areaChart.renderString(content);
+      return areaChart.renderFromString(content);
     case "bar-chart":
-      return barChart.renderString(content);
+      return barChart.renderFromString(content);
     case "flow-chart":
       return flowChart.renderFromString(content);
     case "line-chart":
-      return lineChart.renderString(content);
+      return lineChart.renderFromString(content);
     case "pie-chart":
-      return pieChart.renderString(content);
+      return pieChart.renderFromString(content);
     case "sequence-diagram":
       return sequenceDiagram.renderFromString(content);
     case "sheet-music":
       return sheetMusic.renderFromString(content);
     case "multi-line-chart":
-      return multiLineChart.renderString(content);
+      return multiLineChart.renderFromString(content);
     case "stacked-bar-chart":
-      return stackedBarChart.renderString(content);
+      return stackedBarChart.renderFromString(content);
   }
 };
 
