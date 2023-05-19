@@ -33,8 +33,6 @@ const run = async () => {
 
   const parts = separateCodeblocks(readLinesFromFile(mdFile));
 
-  const main: string[] = [];
-
   [
     "<!DOCTYPE html>",
     "<html>",
