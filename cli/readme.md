@@ -14,11 +14,11 @@ deno install -n serea --allow-read https://deno.land/x/serea/cli/mod.ts
 ## usage
 
 ```
-serea my-file.md
+serea my-file.md > my-file.html
 ```
 
 Optionally add css:
 
 ```
-serea my-file.md --css style.css
+serea my-file.md --css style.css > my-file.html
 ```

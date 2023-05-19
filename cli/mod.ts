@@ -35,11 +35,7 @@ const run = async () => {
 
   const main: string[] = [];
 
-  for await (const part of parts) {
-    main.push(await renderPart(part));
-  }
-
-  const html = [
+  [
     "<!DOCTYPE html>",
     "<html>",
     "<head>",
@@ -49,13 +45,17 @@ const run = async () => {
     "</head>",
     "<body>",
     "<main>",
-    ...main,
+  ].forEach((d) => console.log(d));
+
+  for await (const part of parts) {
+    console.log(await renderPart(part));
+  }
+
+  [
     "</main>",
     "</body>",
     "</html>",
-  ].join("\n");
-
-  console.log(html);
+  ].forEach((d) => console.log(d));
 };
 
 run();

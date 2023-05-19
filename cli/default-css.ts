@@ -2,6 +2,7 @@ export const defaultCss = `
 :root {
   --black: rgb(36, 41, 51);
   --white: #eceff4;
+  --primary: #81a1c1;
 }
 
 html,
@@ -19,6 +20,10 @@ main {
   margin: auto;
   margin-top: 2em;
   padding: 1em;
+}
+
+a {
+  color: var(--primary);
 }
 
 p {
