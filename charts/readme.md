@@ -36,7 +36,7 @@ interface Config {
 ### renderFromString
 
 ```ts
-const html = renderFromString(`
+const svg = renderFromString(`
 width: 400
 temporal: true
 
@@ -47,6 +47,8 @@ Date,Price
 2000-05-01,91
 `);
 ```
+
+see [example](./area-chart.svg)
 
 ## bar chart
 
@@ -83,7 +85,7 @@ interface Config {
 ### renderFromString
 
 ```ts
-const html = renderFromString(`
+const svg = renderFromString(`
 width: 400
 xLabelAngle: 45
 
@@ -94,6 +96,8 @@ Cherries,43
 Dates,91
 `);
 ```
+
+see [example](./bar-chart.svg)
 
 ## line chart
 
@@ -131,7 +135,7 @@ interface Config {
 ### renderFromString
 
 ```ts
-const html = renderFromString(`
+const svg = renderFromString(`
 width: 400
 temporal: true
 
@@ -142,6 +146,8 @@ Date,Price
 2000-05-01,91
 `);
 ```
+
+see [example](./line-chart.svg)
 
 ## multi line chart
 
@@ -178,7 +184,7 @@ interface Config {
 ### renderFromString
 
 ```ts
-const html = renderFromString(`
+const svg = renderFromString(`
 width: 400
 temporal: true
 
@@ -197,6 +203,8 @@ Date,Price,Fruit
 2000-05-01,61,Cherries
 `);
 ```
+
+see [example](./multi-line-chart.svg)
 
 ## pie chart
 
@@ -234,9 +242,7 @@ interface Config {
 ### renderFromString
 
 ```ts
-const html = renderFromString(`
-width: 400
-
+const svg = renderFromString(`
 Fruit,Amount
 Apples,28
 Blackberries,55
@@ -244,6 +250,8 @@ Cherries,43
 Dates,91
 `);
 ```
+
+see [example](./pie-chart.svg)
 
 ## stacked bar chart
 
@@ -282,7 +290,7 @@ interface Config {
 ### renderFromString
 
 ```ts
-const html = renderFromString(`
+const svg = renderFromString(`
 width: 400
 xLabelAngle: 45
 
@@ -301,3 +309,5 @@ Cuba,33,Cherries
 Dominican Rep.,61,Cherries
 `);
 ```
+
+see [example](./stacked-bar-chart.svg)
