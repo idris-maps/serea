@@ -2,7 +2,7 @@ import type { Element, HTMLDocument, Page, Site } from "./deps.ts";
 
 import * as areaChart from "../charts/area-chart.ts";
 import * as barChart from "../charts/bar-chart.ts";
-import * as flowChart from "../flowchart/mod.ts";
+import * as flowChart from "../flow-chart/mod.ts";
 import * as lineChart from "../charts/line-chart.ts";
 import * as multiLineChart from "../charts/multi-line-chart.ts";
 import * as pieChart from "../charts/pie-chart.ts";

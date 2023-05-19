@@ -1,3 +1,4 @@
 # Serea
 
-Diagrams, charts, graphs and stuff
+Charts, diagrams and graphs for markdown
+
