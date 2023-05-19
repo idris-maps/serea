@@ -1,10 +1,10 @@
-import { readLinesFromFile } from './read-lines-from-file.ts'
-import { separateCodeblocks } from './separate-code-blocks.ts'
-import { renderPart } from './render-part.ts'
-import { defaultCss } from './default-css.ts'
+import { readLinesFromFile } from "./read-lines-from-file.ts";
+import { separateCodeblocks } from "./separate-code-blocks.ts";
+import { renderPart } from "./render-part.ts";
+import { defaultCss } from "./default-css.ts";
 
 const run = async () => {
-  const mdFile = Deno.args[0]
+  const mdFile = Deno.args[0];
 
   if (!mdFile) {
     console.error(`
@@ -12,15 +12,15 @@ const run = async () => {
 
       Usage:
         serea my-file.md
-    `)
-    return
+    `);
+    return;
   }
 
-  let style = defaultCss
+  let style = defaultCss;
 
   try {
-    if (Deno.args[1] === '--css' && (Deno.args[2] || '').endsWith('.css')) {
-      style = await Deno.readTextFile(Deno.args[2])
+    if (Deno.args[1] === "--css" && (Deno.args[2] || "").endsWith(".css")) {
+      style = await Deno.readTextFile(Deno.args[2]);
     }
   } catch {
     console.error(`
@@ -28,34 +28,34 @@ const run = async () => {
 
     Usage:
       serea my-file.md --css style.css    
-    `)
+    `);
   }
 
-  const parts = separateCodeblocks(readLinesFromFile(mdFile))
+  const parts = separateCodeblocks(readLinesFromFile(mdFile));
 
-  const main: string[] = []
+  const main: string[] = [];
 
   for await (const part of parts) {
-    main.push(await renderPart(part))
+    main.push(await renderPart(part));
   }
 
   const html = [
-    '<!DOCTYPE html>',
-    '<html>',
-    '<head>',
+    "<!DOCTYPE html>",
+    "<html>",
+    "<head>",
     '<meta charset="UTF-8" />',
     '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
     `<style>${style}</style>`,
-    '</head>',
-    '<body>',
-    '<main>',
+    "</head>",
+    "<body>",
+    "<main>",
     ...main,
-    '</main>',
-    '</body>',
-    '</html>',
-  ].join('\n')
+    "</main>",
+    "</body>",
+    "</html>",
+  ].join("\n");
 
-  console.log(html)
-}
+  console.log(html);
+};
 
-run()
+run();

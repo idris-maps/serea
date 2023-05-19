@@ -43,4 +43,4 @@ svg {
     font-size: 18px;
   }
 }
-`
+`;

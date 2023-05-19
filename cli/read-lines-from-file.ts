@@ -1,4 +1,4 @@
-import { readableStreamFromReader, TextLineStream } from './deps.ts'
+import { readableStreamFromReader, TextLineStream } from "./deps.ts";
 
 export const readLinesFromFile = async function* (filename: string) {
   const file = await Deno.open(filename, { read: true });

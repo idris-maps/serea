@@ -2,7 +2,8 @@
 
 Convert a markdown file to HTML.
 
-Uses [markdown-wasm](https://github.com/rsms/markdown-wasm) and ([serea](https://github.com/idris-maps/serea) for code blocks).
+Uses [markdown-wasm](https://github.com/rsms/markdown-wasm) and
+([serea](https://github.com/idris-maps/serea) for code blocks).
 
 ## install
 
