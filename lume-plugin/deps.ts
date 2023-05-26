@@ -1,4 +1,4 @@
-export type { Page, Site } from "https://deno.land/x/lume@v1.17.3/core.ts";
+export type { Page, Plugin } from "https://deno.land/x/lume@v1.17.4/core.ts";
 export type {
   Element,
   HTMLDocument,

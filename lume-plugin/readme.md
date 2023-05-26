@@ -2,6 +2,8 @@
 
 Draw graphs and charts inside code blocks with [lume](https://lume.land)
 
+[Docs and playground](https://serea.deno.dev)
+
 in the [`_config` file](https://lume.land/docs/configuration/config-file/):
 
 ```ts
@@ -10,7 +12,7 @@ import { sereaPlugin } from "https://deno.land/x/serea/lume-plugin/mod.ts";
 
 const site = lume();
 
-site.use(sereaPlugin());
+site.use(sereaPlugin);
 
 export default site;
 ```

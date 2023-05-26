@@ -1,4 +1,4 @@
-import type { Element, HTMLDocument, Page, Site } from "./deps.ts";
+import type { Element, HTMLDocument, Page, Plugin } from "./deps.ts";
 
 import * as areaChart from "../charts/area-chart.ts";
 import * as barChart from "../charts/bar-chart.ts";
@@ -44,9 +44,9 @@ const getHTML = (lang: string, content: string) => {
 const handleCodeBlock = async (
   document: HTMLDocument,
   codeElement: Element,
+  path: string,
 ) => {
   const language = getLanguage(codeElement);
-  console.log({ language });
   if (!language) return;
 
   const pre = codeElement.parentNode;
@@ -72,12 +72,11 @@ const handleCodeBlock = async (
 
     parent.replaceChild(container, pre);
   } catch (e) {
-    console.log(e);
+    console.error(`Could not handle ${language} on page: ${path}`, e);
   }
 };
 
-export const sereaPlugin = () => {
-  return (site: Site) => {
+export const sereaPlugin: Plugin = site => {
     site.process([".md"], async (page: Page) => {
       const { document } = page;
       if (!document) {
@@ -87,8 +86,8 @@ export const sereaPlugin = () => {
         document.querySelectorAll("code"),
       ) as Element[];
       await Promise.all(
-        codeblocks.map((code) => handleCodeBlock(document, code)),
+        codeblocks.map((code) => handleCodeBlock(document, code, page.src.path)),
       );
     });
   };
-};
+
