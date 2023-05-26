@@ -32,7 +32,11 @@ p {
   text-justify: auto;
 }
 
-svg {
+.serea {
+  text-align: center;
+}
+
+.serea svg {
   max-height: 100vh;
 }
 

@@ -14,32 +14,36 @@ import {
 } from "./deps.ts";
 import type { Part } from "./separate-code-blocks.ts";
 
-const render = (content: string, lang?: string): string | Promise<string> => {
+const renderSvg = (content: string, lang?: string): string | Promise<string> => {
+  switch (lang) {
+    case "area-chart":
+      return areaChart.renderFromString(content);
+    case "bar-chart":
+      return barChart.renderFromString(content);
+    case "flow-chart":
+      return flowChart.renderFromString(content);
+    case "line-chart":
+      return lineChart.renderFromString(content);
+    case "multi-line-chart":
+      return multiLineChart.renderFromString(content);
+    case "pie-chart":
+      return pieChart.renderFromString(content);
+    case "sequence-diagram":
+      return sequenceDiagram.renderFromString(content);
+    case "sheet-music":
+      return sheetMusic.renderFromString(content);
+    case "stacked-bar-chart":
+      return stackedBarChart.renderFromString(content);
+    default:
+      return `<pre><code ${
+        lang ? `class="language-${lang}" ` : ""
+      }>${content}</code></pre>`;
+  }
+}
+
+const render = async (content: string, lang?: string): Promise<string> => {
   try {
-    switch (lang) {
-      case "area-chart":
-        return areaChart.renderFromString(content);
-      case "bar-chart":
-        return barChart.renderFromString(content);
-      case "flow-chart":
-        return flowChart.renderFromString(content);
-      case "line-chart":
-        return lineChart.renderFromString(content);
-      case "multi-line-chart":
-        return multiLineChart.renderFromString(content);
-      case "pie-chart":
-        return pieChart.renderFromString(content);
-      case "sequence-diagram":
-        return sequenceDiagram.renderFromString(content);
-      case "sheet-music":
-        return sheetMusic.renderFromString(content);
-      case "stacked-bar-chart":
-        return stackedBarChart.renderFromString(content);
-      default:
-        return `<pre><code ${
-          lang ? `class="language-${lang}" ` : ""
-        }>${content}</code></pre>`;
-    }
+    return `<div class="serea ${lang}">${await renderSvg(content, lang)}</div>`
   } catch (e) {
     console.error(e);
     return `<pre><code ${
