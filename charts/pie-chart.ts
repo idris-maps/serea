@@ -7,7 +7,7 @@ import { addExtras } from "./src/extra-elements.ts";
 export const render = async (data: DataPie, config: ConfigPie = {}) => {
   const id = crypto.randomUUID();
   const svg = await vegaliteToSvg(getPieSpec(id, data, config));
-  return addExtras(id, svg, config, !config.colors)
+  return addExtras(id, svg, config, !config.colors);
 };
 
 export const renderFromString = (d: string) => {

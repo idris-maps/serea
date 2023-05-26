@@ -14,7 +14,10 @@ import {
 } from "./deps.ts";
 import type { Part } from "./separate-code-blocks.ts";
 
-const renderSvg = (content: string, lang?: string): string | Promise<string> => {
+const renderSvg = (
+  content: string,
+  lang?: string,
+): string | Promise<string> => {
   switch (lang) {
     case "area-chart":
       return areaChart.renderFromString(content);
@@ -39,11 +42,11 @@ const renderSvg = (content: string, lang?: string): string | Promise<string> => 
         lang ? `class="language-${lang}" ` : ""
       }>${content}</code></pre>`;
   }
-}
+};
 
 const render = async (content: string, lang?: string): Promise<string> => {
   try {
-    return `<div class="serea ${lang}">${await renderSvg(content, lang)}</div>`
+    return `<div class="serea ${lang}">${await renderSvg(content, lang)}</div>`;
   } catch (e) {
     console.error(e);
     return `<pre><code ${

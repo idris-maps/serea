@@ -37,3 +37,5 @@ C[Cecile] --> A
 B .. C
 `);
 ```
+
+Uses [dagre](https://github.com/dagrejs/dagre) for the layout (MIT license)

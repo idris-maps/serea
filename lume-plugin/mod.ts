@@ -76,18 +76,17 @@ const handleCodeBlock = async (
   }
 };
 
-export const sereaPlugin: Plugin = site => {
-    site.process([".md"], async (page: Page) => {
-      const { document } = page;
-      if (!document) {
-        return;
-      }
-      const codeblocks = Array.from(
-        document.querySelectorAll("code"),
-      ) as Element[];
-      await Promise.all(
-        codeblocks.map((code) => handleCodeBlock(document, code, page.src.path)),
-      );
-    });
-  };
-
+export const sereaPlugin: Plugin = (site) => {
+  site.process([".md"], async (page: Page) => {
+    const { document } = page;
+    if (!document) {
+      return;
+    }
+    const codeblocks = Array.from(
+      document.querySelectorAll("code"),
+    ) as Element[];
+    await Promise.all(
+      codeblocks.map((code) => handleCodeBlock(document, code, page.src.path)),
+    );
+  });
+};

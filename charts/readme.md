@@ -1,5 +1,7 @@
 # charts
 
+Uses [vegalite](https://vega.github.io/vega-lite/) (BSD-3-Clause license)
+
 ## area chart
 
 ```ts

@@ -15,53 +15,57 @@ const getFillDefsSvg = (id: string) =>
 
 const parseSvg = (svg: string) => {
   try {
-    return new DOMParser().parseFromString(svg, 'text/html');
+    return new DOMParser().parseFromString(svg, "text/html");
   } catch {
-    return null
+    return null;
   }
-}
-
+};
 
 const setBorderStroke = (doc: HTMLDocument, config: Config) => {
-  if (config.background) { return doc }
-  for (const el of doc.querySelectorAll('.background')) {
-    const bg = el as Element
-    if (bg.getAttribute('stroke')) {
-      bg.setAttribute('stroke', 'none')
+  if (config.background) return doc;
+  for (const el of doc.querySelectorAll(".background")) {
+    const bg = el as Element;
+    if (bg.getAttribute("stroke")) {
+      bg.setAttribute("stroke", "none");
     }
   }
-  return doc
-}
+  return doc;
+};
 
 const fixSvgElement = (id: string, doc: HTMLDocument) => {
-  const svg = doc.querySelector('svg')
+  const svg = doc.querySelector("svg");
   if (svg) {
-    svg.setAttribute('id', id)
-    svg.removeAttribute('width')
-    svg.removeAttribute('height')
+    svg.setAttribute("id", id);
+    svg.removeAttribute("width");
+    svg.removeAttribute("height");
   }
-  return doc
-}
+  return doc;
+};
 
-export const addExtras = (id: string, svg: string, config: Config, addPatterns?: boolean) => {
-  const doc = parseSvg(svg)
-  if (!doc) { return svg }
-  const fixed = setBorderStroke(fixSvgElement(id, doc), config)
-  const fixedSvg = fixed.querySelector('svg')
+export const addExtras = (
+  id: string,
+  svg: string,
+  config: Config,
+  addPatterns?: boolean,
+) => {
+  const doc = parseSvg(svg);
+  if (!doc) return svg;
+  const fixed = setBorderStroke(fixSvgElement(id, doc), config);
+  const fixedSvg = fixed.querySelector("svg");
 
   if (!fixedSvg) {
-    return svg
+    return svg;
   }
-  
+
   // hacks because DomParser does not support SVG yet
   // in HTML attributes such as "patternUnits" and "viewBox" are lower case
 
-  const svgString = fixedSvg.outerHTML.replace('viewbox', 'viewBox')
+  const svgString = fixedSvg.outerHTML.replace("viewbox", "viewBox");
 
   if (!addPatterns) {
-    return svgString
+    return svgString;
   }
 
-  const [_svg] = svgString.split('</svg>')
-  return _svg + getFillDefsSvg(id) + '</svg>'
-}
+  const [_svg] = svgString.split("</svg>");
+  return _svg + getFillDefsSvg(id) + "</svg>";
+};

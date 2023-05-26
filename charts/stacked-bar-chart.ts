@@ -7,7 +7,7 @@ import { addExtras } from "./src/extra-elements.ts";
 export const render = async (data: Data3d, config: ConfigStackedBar = {}) => {
   const id = crypto.randomUUID();
   const svg = await vegaliteToSvg(getStackedBarSpec(id, data, config));
-  return addExtras(id, svg, config, !config.colors)
+  return addExtras(id, svg, config, !config.colors);
 };
 
 export const renderFromString = (d: string) => {

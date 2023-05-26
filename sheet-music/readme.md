@@ -21,3 +21,5 @@ K: Emin
 ```
 
 returns an SVG, see the [example](./example.svg)
+
+Uses [abc.js](https://www.abcjs.net/) (MIT license)
