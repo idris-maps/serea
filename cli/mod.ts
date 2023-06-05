@@ -1,59 +1,42 @@
-import { readLinesFromFile } from "./read-lines-from-file.ts";
-import { separateCodeblocks } from "./separate-code-blocks.ts";
-import { renderPart } from "./render-part.ts";
-import { defaultCss } from "./default-css.ts";
+import { convertToHtml } from "./convert-to-html.ts";
+import { startServer } from "./serve.ts";
 
-const run = async () => {
-  const mdFile = Deno.args[0];
+const firstArg = Deno.args[0];
 
-  if (!mdFile) {
-    console.error(`
-      No markdown file specified
+const help = `
+-- serea --
 
-      Usage:
-        serea my-file.md
-    `);
-    return;
-  }
+Usage:
+======
 
-  let style = defaultCss;
+- convert a markdown file to html
+  -------------------------------
 
-  try {
-    if (Deno.args[1] === "--css" && (Deno.args[2] || "").endsWith(".css")) {
-      style = await Deno.readTextFile(Deno.args[2]);
-    }
-  } catch {
-    console.error(`
-    Could not find css file ${Deno.args[2]}
+  serea [MD-FILE] > [OUTPUT]
 
-    Usage:
-      serea my-file.md --css style.css    
-    `);
-  }
+  Example:
 
-  const parts = separateCodeblocks(readLinesFromFile(mdFile));
+  serea my-file.md > my-file.html
 
-  [
-    "<!DOCTYPE html>",
-    "<html>",
-    "<head>",
-    '<meta charset="UTF-8" />',
-    '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
-    `<style>${style}</style>`,
-    "</head>",
-    "<body>",
-    "<main>",
-  ].forEach((d) => console.log(d));
+  Optionally use your own css file with "--css=my-style.css"
 
-  for await (const part of parts) {
-    console.log(await renderPart(part));
-  }
 
-  [
-    "</main>",
-    "</body>",
-    "</html>",
-  ].forEach((d) => console.log(d));
-};
+- serve all md files in the current directory
+  -------------------------------------------
 
-run();
+  serea serve
+
+  Options:
+
+    * --port=3000 (defaults to 3000)
+    * --css=my-style.css
+
+`;
+
+if (!firstArg || ["help", "-h"].includes(firstArg)) {
+  console.log(help);
+} else if (firstArg === "serve") {
+  startServer();
+} else {
+  convertToHtml(firstArg);
+}

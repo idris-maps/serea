@@ -38,17 +38,14 @@ const renderSvg = (
     case "stacked-bar-chart":
       return stackedBarChart.renderFromString(content);
     default:
-      return `<pre><code ${
-        lang ? `class="language-${lang}" ` : ""
-      }>${content}</code></pre>`;
+      throw new Error("unknown language: " + lang);
   }
 };
 
 const render = async (content: string, lang?: string): Promise<string> => {
   try {
     return `<div class="serea ${lang}">${await renderSvg(content, lang)}</div>`;
-  } catch (e) {
-    console.error(e);
+  } catch {
     return `<pre><code ${
       lang ? `class="language-${lang}" ` : ""
     }>${content}</code></pre>`;

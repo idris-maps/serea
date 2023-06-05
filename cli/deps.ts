@@ -1,7 +1,8 @@
 export {
   readableStreamFromReader,
   TextLineStream,
-} from "https://deno.land/std@0.188.0/streams/mod.ts";
+} from "https://deno.land/std@0.190.0/streams/mod.ts";
+export { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 export { ParseFlags, toString as md2html } from "./vendor/markdown-wasm/mod.ts";
 export type { ParseOptions } from "./vendor/markdown-wasm/mod.ts";
 export * from "../charts/mod.ts";
