@@ -5,7 +5,7 @@ import { parsePie } from "./src/parse-dsl.ts";
 import { addExtras } from "./src/extra-elements.ts";
 
 export const render = async (data: DataPie, config: ConfigPie = {}) => {
-  const id = crypto.randomUUID();
+  const id = "pie-" + Math.random().toFixed(10);
   const svg = await vegaliteToSvg(getPieSpec(id, data, config));
   return addExtras(id, svg, config, !config.colors);
 };
