@@ -2,6 +2,7 @@ import {
   areaChart,
   barChart,
   flowChart,
+  ganttChart,
   lineChart,
   md2html,
   multiLineChart,
@@ -25,6 +26,8 @@ const renderSvg = (
       return barChart.renderFromString(content);
     case "flow-chart":
       return flowChart.renderFromString(content);
+    case 'gantt-chart':
+      return ganttChart.renderFromString(content);
     case "line-chart":
       return lineChart.renderFromString(content);
     case "multi-line-chart":
