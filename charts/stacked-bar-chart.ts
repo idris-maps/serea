@@ -5,7 +5,7 @@ import { parse3d } from "./src/parse-dsl.ts";
 import { addExtras } from "./src/extra-elements.ts";
 
 export const render = async (data: Data3d, config: ConfigStackedBar = {}) => {
-  const id = crypto.randomUUID();
+  const id = "stacked-bar" + Math.random().toFixed(10);
   const svg = await vegaliteToSvg(getStackedBarSpec(id, data, config));
   return addExtras(id, svg, config, !config.colors);
 };

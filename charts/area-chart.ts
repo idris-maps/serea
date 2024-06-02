@@ -6,7 +6,8 @@ import { addExtras } from "./src/extra-elements.ts";
 
 export const render = async (data: Data2d, config: Config2d = {}) => {
   const svg = await vegaliteToSvg(get2dSpec("area-chart", data, config));
-  return addExtras(crypto.randomUUID(), svg, config);
+  const id = "area-" + Math.random().toFixed(10);
+  return addExtras(id, svg, config);
 };
 
 export const renderFromString = (d: string) => {
