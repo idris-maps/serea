@@ -3,7 +3,7 @@ import type { Element, HTMLDocument, Page, Plugin } from "./deps.ts";
 import * as areaChart from "../charts/area-chart.ts";
 import * as barChart from "../charts/bar-chart.ts";
 import * as flowChart from "../flow-chart/mod.ts";
-import * as ganttChart from '../gantt/mod.ts';
+import * as ganttChart from "../gantt/mod.ts";
 import * as lineChart from "../charts/line-chart.ts";
 import * as multiLineChart from "../charts/multi-line-chart.ts";
 import * as pieChart from "../charts/pie-chart.ts";
@@ -27,8 +27,8 @@ const getHTML = (lang: string, content: string) => {
       return barChart.renderFromString(content);
     case "flow-chart":
       return flowChart.renderFromString(content);
-    case 'gantt-chart':
-      return ganttChart.renderFromString(content)
+    case "gantt-chart":
+      return ganttChart.renderFromString(content);
     case "line-chart":
       return lineChart.renderFromString(content);
     case "pie-chart":

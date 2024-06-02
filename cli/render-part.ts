@@ -26,7 +26,7 @@ const renderSvg = (
       return barChart.renderFromString(content);
     case "flow-chart":
       return flowChart.renderFromString(content);
-    case 'gantt-chart':
+    case "gantt-chart":
       return ganttChart.renderFromString(content);
     case "line-chart":
       return lineChart.renderFromString(content);
