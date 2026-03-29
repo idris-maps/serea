@@ -2,7 +2,7 @@
 
 Charts, diagrams and graphs for markdown
 
-[Docs and playground](https://serea.deno.dev)
+[Docs and playground](https://serea-site.anders.deno.net/)
 
 ## Usage
 
