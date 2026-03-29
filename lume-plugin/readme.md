@@ -2,7 +2,7 @@
 
 Draw graphs and charts inside code blocks with [lume](https://lume.land)
 
-[Docs and playground](https://serea.deno.dev)
+[Docs and playground](https://serea-site.anders.deno.net/)
 
 in the [`_config` file](https://lume.land/docs/configuration/config-file/):
 
@@ -22,6 +22,7 @@ available "languages":
 - `area-chart`
 - `bar-chart`
 - `flow-chart`
+- `gantt-chart`
 - `line-chart`
 - `pie-chart`
 - `sequence-diagram`
