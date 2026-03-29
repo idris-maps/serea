@@ -154,6 +154,26 @@ const renderLegend = ({ labels, verticalLines }: Legend, height: number) => {
   return g;
 };
 
+const getLegendPadding = (width: number, legend?: Legend) => {
+  if (!legend || !legend.labels) return [0, 0];
+  const firstLabel = legend.labels[0];
+  const lastLabel = legend.labels[legend.labels.length - +1];
+  const getLabelWidth = (label = "") =>
+    Math.min(
+      UNIT_WIDTH,
+      RENDER_CONFIG.legend.label["font-size"] *
+        RENDER_CONFIG.fontSizeMultiplier * label.length,
+    );
+  const firstLabelWidth = getLabelWidth(firstLabel.label);
+  const lastLabelWidth = getLabelWidth(lastLabel.label);
+  const firstLabelStart = firstLabel.x - firstLabelWidth / 2;
+  const lastLabelEnd = lastLabel.x + lastLabelWidth / 2;
+  return [
+    0 - Math.min(0, firstLabelStart),
+    Math.max(width, lastLabelEnd) - width,
+  ];
+};
+
 export const renderSvg = (
   { width, sections, legend }: {
     width: number;
@@ -175,7 +195,8 @@ export const renderSvg = (
     ? [renderLegend(legend, height), sectionGroup]
     : [sectionGroup];
 
-  const canvasWidth = width + UNIT_WIDTH;
+  const [padLeft, padRight] = getLegendPadding(width, legend);
+  const canvasWidth = width + padLeft + padRight;
   const canvasHeight = legend
     ? (height + 2 * RENDER_CONFIG.legend.height)
     : height;
@@ -191,7 +212,7 @@ export const renderSvg = (
     children: [
       {
         tag: "g",
-        attrs: { transform: `translate(${UNIT_WIDTH / 2}, 0)` },
+        attrs: { transform: `translate(${padLeft}, 0)` },
         children,
       },
     ],
